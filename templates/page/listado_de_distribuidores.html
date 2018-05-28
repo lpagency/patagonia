@@ -9,42 +9,42 @@
 {% end %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{{ site_base }}/common/js/bower/bodegas.client/dist/bodegas.client.css" />
+    <link rel="stylesheet" type="text/css" href="{{ site_base }}/common/js/bower/bodegas.client/dist/bodegas.client.css" />
 {% end %}
 
 {% block javascript %}
- <script type="text/javascript" src="{{ site_base }}/static/js/importer_list.js"></script>
- <script type="text/javascript">
+    <script type="text/javascript" src="{{ site_base }}/{{ nocache_static }}/js/importer_list.js"></script>
+    <script type="text/javascript">
+        var stores=[];
 
- var stores=[];
+        var base_url = 'https://apibodegas.loadingplay.com/',
+        checkout_url = 'https://pay.loadingplay.com/';
+        var app_public = 9;
 
-var base_url = 'https://apibodegas.loadingplay.com/',
-checkout_url = 'https://pay.loadingplay.com/';
-var app_public = 9;
+        function isLocalHost()
+        {
+            return document.location.href.indexOf('localhost') != -1;
+        }
 
-function isLocalHost() {
-    return document.location.href.indexOf('localhost') != -1;
-}
+        function isDevelopment()
+        {
+            return document.location.href.indexOf('ondev.today') != -1;
+        }
 
-function isDevelopment() {
-    return document.location.href.indexOf('ondev.today') != -1;
-}
-
-// configure for each enviroment
-if ( isLocalHost() ) 
-{
-    base_url = 'https://apibodegas.loadingplay.com/';
-    checkout_url = 'https://pay.loadingplay.com/';
-    app_public = 15;
-} 
-else if ( isDevelopment() ) 
-{
-    base_url = 'https://apibodegas.loadingplay.com/';
-    checkout_url = 'https://pay.loadingplay.com/';
-    app_public = 15;
-}
-
- </script>
+        // configure for each enviroment
+        if ( isLocalHost() ) 
+        {
+            base_url = 'https://apibodegas.loadingplay.com/';
+            checkout_url = 'https://pay.loadingplay.com/';
+            app_public = 15;
+        } 
+        else if ( isDevelopment() ) 
+        {
+            base_url = 'https://apibodegas.loadingplay.com/';
+            checkout_url = 'https://pay.loadingplay.com/';
+            app_public = 15;
+        }
+    </script>
 {% end %}
 {% block body %}
 {% if is_admin %}
